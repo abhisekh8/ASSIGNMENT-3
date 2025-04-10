@@ -1,0 +1,59 @@
+//Implement a Java program that performs complex manipulations on an array of
+integers, including operations such as sorting, searching, and accessing elements at
+various indices. Introduce scenarios where accessing elements beyond the array bounds
+leads to an ArrayIndexOutOfBoundsException. Handle these exceptions gracefully
+to ensure the program continues execution without crashing.
+
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class SimpleArrayManipulation {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+       
+        int[] numbers = {5, 3, 8, 1, 2, 7, 4, 6};
+        
+       
+        System.out.println("Original array: " + Arrays.toString(numbers));
+        
+        
+        Arrays.sort(numbers);
+        System.out.println("Sorted array: " + Arrays.toString(numbers));
+        
+       
+        System.out.print("Enter a number to search for: ");
+        int searchNumber = sc.nextInt();
+        int index = linearSearch(numbers, searchNumber);
+        
+        if (index != -1) {
+            System.out.println("Number " + searchNumber + " found at index: " + index);
+        } else {
+            System.out.println("Number " + searchNumber + " not found in the array.");
+        }
+        
+       
+        System.out.print("Enter an index to access: ");
+        int accessIndex = sc.nextInt();
+        
+        try {
+            System.out.println("Element at index " + accessIndex + ": " + numbers[accessIndex]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: Index " + accessIndex + " is out of bounds.");
+        }
+        
+        
+        scanner.close();
+    }
+    
+   
+    public static int linearSearch(int[] array, int target) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == target) {
+                return i; 
+            }
+        }
+        return -1; 
+    }
+}
