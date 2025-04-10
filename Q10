@@ -1,0 +1,66 @@
+//Implement a Java program that reads a file path from the command-line argument and
+attempts to read its contents. If the file path is null or points to a non-existent file,
+throw a custom FileNotFoundException. If the file exists but cannot be read due to
+permission issues, throw a custom FileReadPermissionException. Your task is to
+create these custom exception classes and handle them appropriately in your program.
+
+
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+
+class MyFileNotFoundException extends Exception {
+    public MyFileNotFoundException(String message) {
+        super(message);
+    }
+}
+
+
+class MyFileReadPermissionException extends Exception {
+    public MyFileReadPermissionException(String message) {
+        super(message);
+    }
+}
+
+public class Q10 {
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("Please provide a file path.");
+            return;
+        }
+
+        String filePath = args[0];
+
+        try {
+            readFile(filePath);
+        } catch (MyFileNotFoundException | MyFileReadPermissionException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+        }
+    }
+
+   
+    public static void readFile(String filePath) throws MyFileNotFoundException, MyFileReadPermissionException, IOException {
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            throw new MyFileNotFoundException("File not found: " + filePath);
+        }
+
+        if (!file.canRead()) {
+            throw new MyFileReadPermissionException("Cannot read file: " + filePath);
+        }
+
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        }
+    }
+}
