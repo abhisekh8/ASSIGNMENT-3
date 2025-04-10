@@ -1,0 +1,38 @@
+//Create a custom-checked exception class named CustomCheckedException. Use this
+exception in your program to handle a specific error condition and demonstrate its
+usage with a try-catch block.
+
+
+import java.util.Scanner;
+
+
+class CustomCheckedException extends Exception {
+    public CustomCheckedException(String message) {
+        super(message);
+    }
+}
+
+public class Q8 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a positive integer: ");
+        int number = sc.nextInt();
+        
+        try {
+            checkPositive(number);
+            System.out.println("You entered a valid number: " + number);
+        } catch (CustomCheckedException e) {
+            System.out.println("Caught CustomCheckedException: " + e.getMessage());
+        }
+        
+        scanner.close();
+    }
+    
+    
+    public static void checkPositive(int number) throws CustomCheckedException {
+        if (number <= 0) {
+            throw new CustomCheckedException("Number must be positive.");
+        }
+    }
+}
