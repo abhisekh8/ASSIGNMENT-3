@@ -1,0 +1,30 @@
+//Write a Java program to find the square root of an integer number. Demonstrate the use
+of a try-catch block to handle ArithmeticException.
+
+
+import java.util.Scanner;
+
+public class SquareRootCalculator {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+       
+        System.out.print("Enter an integer to find its square root: ");
+        int number = scanner.nextInt();
+
+        try {
+           
+            if (number < 0) {
+                throw new ArithmeticException("Cannot find the square root of a negative number.");
+            }
+            double squareRoot = Math.sqrt(number);
+            System.out.println("The square root of " + number + " is: " + squareRoot);
+        } catch (ArithmeticException e) {
+           
+            System.out.println(e.getMessage());
+        }
+
+        scanner.close();
+    }
+}
