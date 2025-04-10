@@ -1,0 +1,27 @@
+//Write a program that reads data from a file and performs some processing. Handle
+checked IOException by using try-catch block to catch and handle the exception.
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class SimpleFileReader {
+    public static void main(String[] args) {
+       
+        String filePath = "path/to/your/file.txt"; // Change this to your file path
+
+        
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                System.out.println(line); 
+            }
+
+            br.close(); 
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
