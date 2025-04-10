@@ -1,0 +1,38 @@
+//You are given a string containing alphanumeric characters, and your task is to design a
+Java program that extracts and displays the numeric characters from the given string. If
+no numeric characters are present, the program should display an appropriate message
+indicating their absence. Additionally, if the input string is null or empty, the program
+must throw a NullPointerException with a meaningful error message.
+
+
+public class Q1 {
+    public static void main(String[] args) {
+       
+        String input = "abc123xyz456";
+
+        try {
+            // Check if the input string is null or empty
+            if (input == null || input.isEmpty()) {
+                throw new NullPointerException("Input string is null or empty");
+            }
+
+            // Loop through the string to extract numeric characters
+            String result = "";
+            for (char c : input.toCharArray()) {
+                if (Character.isDigit(c)) {
+                    result += c; // Append numeric character
+                }
+            }
+
+            // Display the result
+            if (!result.isEmpty()) {
+                System.out.println("Numeric characters: " + result);
+            } else {
+                System.out.println("No numeric characters found.");
+            }
+
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
