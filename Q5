@@ -1,0 +1,33 @@
+//Demonstrate the use of a nested try-catch block. Write a Java program where the outer
+try-catch block handles a NumberFormatException, while the inner try-catch block
+handles an ArithmeticException.
+
+
+import java.util.Scanner;
+
+public class Q5 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number to divide 100: ");
+        String input = sc.nextLine();
+        
+        try {
+           
+            int number = Integer.parseInt(input); 
+            
+            try {
+                
+                int result = 100 / number; 
+                System.out.println("Result: " + result);
+            } catch (ArithmeticException e) {
+                System.out.println("Error: Cannot divide by zero.");
+            }
+            
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid number format. Please enter a valid integer.");
+        } finally {
+            scanner.close();
+        }
+    }
+}
